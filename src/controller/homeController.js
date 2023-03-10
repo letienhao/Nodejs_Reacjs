@@ -1,20 +1,9 @@
 import CRUDService from '../services/CRUDService'
-import db from '../models/index'
-let homeController = async (req, res) => {
-  try {
-    let data = await db.User.findAll({
-      row: true
-    })
-    return res.render('home.ejs', { data: JSON.stringify(data) })
-  } catch (error) {
-    console.log(error);
-  }
-}
 let getCRUD = (req, res) => {
   return res.render("crud.ejs")
 }
 let postCrud = async (req, res) => {
-  await CRUDService(req.body)
+  await CRUDService.createNewUser(req.body)
 }
 let getInfoCrud = async (req, res) => {
   let data = await CRUDService.getAllUser()
@@ -29,11 +18,16 @@ let putCrud = async (req, res) => {
   const dataUpdate = await CRUDService.updateUser(data)
   return res.render('displayCrud.ejs', { data: dataUpdate })
 }
+let deleteCrud = async (req, res) => {
+  console.log(req.query.id);
+  let data = await CRUDService.deleteCrud(req.query.id)
+  return res.render("displayCrud.ejs", { data: data })
+}
 module.exports = {
-  getHomePage: homeController,
   getCRUD: getCRUD,
   postCrud: postCrud,
   getInfoCrud: getInfoCrud,
   editCrud: editCrud,
-  putCrud: putCrud
+  putCrud: putCrud,
+  deleteCrud: deleteCrud
 }
