@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   };
-  Doctor_Clinic_Specialty.init({ // không cần khai báo id
+  Doctor_Clinic_Specialty.init({
     doctorId: DataTypes.INTEGER,
     clinicId: DataTypes.INTEGER,
     specialtyId: DataTypes.INTEGER,
