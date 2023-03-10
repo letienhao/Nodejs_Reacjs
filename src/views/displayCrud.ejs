@@ -18,6 +18,26 @@
       tr:nth-child(even) {
         background-color: #dddddd;
       }
+      .action {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+      }
+      .action a {
+        border: 2px solid red;
+        padding: 5px 5px;
+        border-radius: 10px;
+        text-decoration: none;
+        color: black;
+        background: red;
+      }
+      .edit {
+        background: orange !important;
+      }
+      .action {
+        text-align: center;
+      }
     </style>
   </head>
   <body>
@@ -29,7 +49,7 @@
         <th>LastName</th>
         <th>Address</th>
         <th>PhoneNumber</th>
-        <th>Gender</th>
+        <th class="action">Action</th>
       </tr>
       <% for(var i=0; i < data.length; i++) { %>
       <tr>
@@ -38,7 +58,16 @@
         <td><%= data[i].lastName %></td>
         <td><%= data[i].address%></td>
         <td><%= data[i].phoneNumber %></td>
-        <td><%= data[i].gender %></td>
+        <td class="action">
+          <a
+            href="/edit-crud?id=<%= data[i].id %>"
+            type="button"
+            class="edit"
+            target="_blank"
+            >Edit</a
+          >
+          <a href="" type="button" target="_blank">Delete</a>
+        </td>
       </tr>
       <% } %>
     </table>
