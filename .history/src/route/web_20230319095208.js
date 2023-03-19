@@ -13,7 +13,7 @@ let initWebRoutes = (app) => {
   router.get('/delete-crud', homeController.deleteCrud)
   // rest api
   router.post('/login', userController.UserLogin)
-  return app.use('/api', router);
+  return app.use('/', router);
 }
 
 module.exports = initWebRoutes;
